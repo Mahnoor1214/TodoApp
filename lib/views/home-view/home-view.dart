@@ -64,7 +64,7 @@ class HomeView extends StatelessWidget {
                               child: ListTile(
                                 onTap: () {
                                   Navigator.push(context,
-                                      MaterialPageRoute(builder: (context)=>UpdateDataEntry(docId: 'docid')));
+                                      MaterialPageRoute(builder: (context)=>UpdateDataEntry(docId: data[index]['docid'])));
                                 },
                                 onLongPress: () {
                                   FirebaseFirestore.instance

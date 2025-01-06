@@ -46,7 +46,7 @@ class _UpdateDataEntryState extends State<UpdateDataEntry> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appColors.backGroundColor,
-      body: isloading ? Center(child: AppLoader()) : Column(
+      body:  Column(
         children: [
           ContainerClass(),
           SizedBox(height: 5),
