@@ -21,34 +21,34 @@ class _UpdateDataEntryState extends State<UpdateDataEntry> {
   TextEditingController DescriptionController = TextEditingController();
   bool isloading = false;
   @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-  fetchData() async {
-    try {
-      isloading = true;
-      setState(() {});
-      User? user = FirebaseAuth.instance.currentUser;
-      String userId = user!.uid;
-
-      DocumentSnapshot doc = await FirebaseFirestore.instance
-          .collection(userId)
-          .doc(widget.docId)
-          .get();
-
-      if (doc.exists) {
-        TitleController.text = doc['title'];
-        DescriptionController.text = doc['description'];
-      }
-      isloading = false;
-      setState(() {});
-    } catch (e) {
-      isloading = false;
-      setState(() {});
-      Get.snackbar('Error', '${e.toString()}');
-    }
-  }
+  // void initState() {
+  //   super.initState();
+  //   fetchData();
+  // }
+  // fetchData() async {
+  //   try {
+  //     isloading = true;
+  //     setState(() {});
+  //     User? user = FirebaseAuth.instance.currentUser;
+  //     String userId = user!.uid;
+  //
+  //     DocumentSnapshot doc = await FirebaseFirestore.instance
+  //         .collection(userId)
+  //         .doc(widget.docId)
+  //         .get();
+  //
+  //     if (doc.exists) {
+  //       TitleController.text = doc['title'];
+  //       DescriptionController.text = doc['description'];
+  //     }
+  //     isloading = false;
+  //     setState(() {});
+  //   } catch (e) {
+  //     isloading = false;
+  //     setState(() {});
+  //     Get.snackbar('Error', '${e.toString()}');
+  //   }
+  // }
   updatedata() async {
     try {
       isloading = true;
