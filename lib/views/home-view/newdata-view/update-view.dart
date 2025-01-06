@@ -21,34 +21,6 @@ class _UpdateDataEntryState extends State<UpdateDataEntry> {
   TextEditingController DescriptionController = TextEditingController();
   bool isloading = false;
   @override
-  // void initState() {
-  //   super.initState();
-  //   fetchData();
-  // }
-  // fetchData() async {
-  //   try {
-  //     isloading = true;
-  //     setState(() {});
-  //     User? user = FirebaseAuth.instance.currentUser;
-  //     String userId = user!.uid;
-  //
-  //     DocumentSnapshot doc = await FirebaseFirestore.instance
-  //         .collection(userId)
-  //         .doc(widget.docId)
-  //         .get();
-  //
-  //     if (doc.exists) {
-  //       TitleController.text = doc['title'];
-  //       DescriptionController.text = doc['description'];
-  //     }
-  //     isloading = false;
-  //     setState(() {});
-  //   } catch (e) {
-  //     isloading = false;
-  //     setState(() {});
-  //     Get.snackbar('Error', '${e.toString()}');
-  //   }
-  // }
   updatedata() async {
     try {
       isloading = true;
@@ -73,42 +45,183 @@ class _UpdateDataEntryState extends State<UpdateDataEntry> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: appColors.backGroundColor,
-        body: isloading
-            ? Center(child: AppLoader())
-            : Column(
-            children: [
-              ContainerClass(),
-              SizedBox(height: 5),
-              Image.asset('assets/4rth.png', height: 172, width: 243),
-              SizedBox(height: 40),
-              BlackTextHeading(text: 'Update Your Task'),
-              SizedBox(height: 20),
-              NormalTextWidget(
-                text: 'Modify the details as per your choice',
-                textColor: appColors.primaryColor,
-              ),
-              SizedBox(height: 20),
-              TextFormFieldWidget(
-                hintText: 'Enter Name of your Task',
-                controller: TitleController,
-              ),
-              SizedBox(height: 10),
-              TextFormFieldWidget(
-                hintText: 'Add Description',
-                controller: DescriptionController,
-              ),
-              SizedBox(height: 20),
-              isloading
-                  ? AppLoader()
-                  : ButtonWidget(
-                text: 'Update Task',
-                ontap: () {
-                  updatedata();
-                },
-              ),
-            ],
-            ),
-        );
-    }
+      backgroundColor: appColors.backGroundColor,
+      body: isloading ? Center(child: AppLoader()) : Column(
+        children: [
+          ContainerClass(),
+          SizedBox(height: 5),
+          Image.asset('assets/4rth.png', height: 172, width: 243),
+          SizedBox(height: 40),
+          BlackTextHeading(text: 'Update Your Task'),
+          SizedBox(height: 20),
+          NormalTextWidget(
+            text: 'Modify the details as per your choice',
+            textColor: appColors.primaryColor,
+          ),
+          SizedBox(height: 20),
+          TextFormFieldWidget(
+            hintText: 'Enter Name of your Task',
+            controller: TitleController,
+          ),
+          SizedBox(height: 10),
+          TextFormFieldWidget(
+            hintText: 'Add Description',
+            controller: DescriptionController,
+          ),
+          SizedBox(height: 20),
+          isloading
+              ? AppLoader()
+              : ButtonWidget(
+            text: 'Update Task',
+            ontap: () {
+              updatedata();
+            },
+          ),
+        ],
+      ),
+    );
+  }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/cupertino.dart';
+// import 'package:flutter/material.dart';
+// import 'package:todoapp/controller/constants/app-colors/app-colors.dart';
+// import 'package:todoapp/controller/constants/app-loader/app-loader.dart';
+// import 'package:todoapp/controller/widget/blacktext-widget.dart';
+// import 'package:todoapp/controller/widget/button-widget.dart';
+// import 'package:todoapp/controller/widget/normaltext-widget.dart';
+// import 'package:todoapp/controller/widget/textformfield.dart';
+//
+// class UpdateDataScreen extends StatefulWidget {
+//   String docid;
+//   UpdateDataScreen({super.key, required this.docid});
+//
+//   @override
+//   State<UpdateDataScreen> createState() => _UpdateDataScreenState();
+// }
+//
+// class _UpdateDataScreenState extends State<UpdateDataScreen> {
+//   TextEditingController taskController = TextEditingController();
+//   TextEditingController descriptionController = TextEditingController();
+//   bool isLoading=false;
+//   updateData() async{
+//     try{
+//       await FirebaseFirestore.instance.collection(FirebaseAuth.instance.currentUser!.uid).doc(widget.docid).update({
+//         'enterTask':taskController.text,
+//         'taskDescription':descriptionController.text,
+//       });
+//       Navigator.pop(context);
+//     }
+//     catch (e) {}
+//   }
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//         body: Padding(
+//             padding: const EdgeInsets.all(20.0),
+//             child: Column(
+//               crossAxisAlignment: CrossAxisAlignment.start,
+//               children: [
+//                 const SizedBox(height: 30),
+//                 BlackTextHeading(text: 'Update Data'),
+//                 const SizedBox(height: 20),
+//                 NormalTextWidget(
+//                   text: 'Fill in the details below',
+//                   textColor: appColors.primaryColor,
+//                 ),
+//                 const SizedBox(height: 20),
+//                 TextFormFieldWidget(
+//                   hintText: 'Enter Task',
+//                   controller: taskController,
+//                 ),
+//                 const SizedBox(height: 20),
+//                 TextFormFieldWidget(
+//                   hintText: 'Enter Task Description',
+//                   controller: descriptionController,
+//                 ),
+//                 const SizedBox(height: 30),
+//                 isLoading==true?AppLoader():ButtonWidget(
+//                   text: 'Save Data',
+//                   ontap: () {
+//                     updateData();
+//                     //insertData();// This is just the UI screen; backend logic can be implemented here.
+//                   },
+//                 ),
+//               ],
+//             ),
+//             ),
+//         );
+//   }
+// }
