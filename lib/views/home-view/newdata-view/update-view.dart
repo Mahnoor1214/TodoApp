@@ -46,38 +46,40 @@ class _UpdateDataEntryState extends State<UpdateDataEntry> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: appColors.backGroundColor,
-      body:  Column(
-        children: [
-          ContainerClass(),
-          SizedBox(height: 5),
-          Image.asset('assets/4rth.png', height: 172, width: 243),
-          SizedBox(height: 40),
-          BlackTextHeading(text: 'Update Your Task'),
-          SizedBox(height: 20),
-          NormalTextWidget(
-            text: 'Modify the details as per your choice',
-            textColor: appColors.primaryColor,
-          ),
-          SizedBox(height: 20),
-          TextFormFieldWidget(
-            hintText: 'Enter Name of your Task',
-            controller: TitleController,
-          ),
-          SizedBox(height: 10),
-          TextFormFieldWidget(
-            hintText: 'Add Description',
-            controller: DescriptionController,
-          ),
-          SizedBox(height: 20),
-          isloading
-              ? AppLoader()
-              : ButtonWidget(
-            text: 'Update Task',
-            ontap: () {
-              updatedata();
-            },
-          ),
-        ],
+      body:  SingleChildScrollView(
+        child: Column(
+          children: [
+            ContainerClass(),
+            SizedBox(height: 5),
+            Image.asset('assets/4rth.png', height: 172, width: 243),
+            SizedBox(height: 40),
+            BlackTextHeading(text: 'Update Your Task'),
+            SizedBox(height: 20),
+            NormalTextWidget(
+              text: 'Modify the details as per your choice',
+              textColor: appColors.primaryColor,
+            ),
+            SizedBox(height: 20),
+            TextFormFieldWidget(
+              hintText: 'Enter Name of your Task',
+              controller: TitleController,
+            ),
+            SizedBox(height: 10),
+            TextFormFieldWidget(
+              hintText: 'Add Description',
+              controller: DescriptionController,
+            ),
+            SizedBox(height: 20),
+            isloading
+                ? AppLoader()
+                : ButtonWidget(
+              text: 'Update Task',
+              ontap: () {
+                updatedata();
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

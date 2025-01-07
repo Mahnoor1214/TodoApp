@@ -1,4 +1,3 @@
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -24,27 +23,29 @@ class _IntroViewState extends State<IntroView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(backgroundColor: appColors.backGroundColor,
-      body: Column(children: [ContainerClass(),
-        Image.asset('assets/1st.png',height: 254,width: 354,),
-        SizedBox(height: 30,),
-        BlackTextHeading(text: 'Get Things Done With Todo App'),
-        SizedBox(height: 15,),
-        NormalTextWidget(text: "Welcome to Todo App! Organize tasks, \n"
-            "set priorities,and stay on track effortlessly.\n "
-            "Let’s get started!",
-          textColor: appColors.primaryColor,),
-        SizedBox(height: 20,),
-        AppLoader(),
-        SizedBox(height: 10,),
-        ButtonWidget(text: 'Get Started', ontap: () async {
-          User? check= await FirebaseAuth.instance.currentUser;
-        if(check==null){Navigator.push(context,
-            MaterialPageRoute(builder: (context)=>SignupView()));
-        }
-        else{
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context)=>HomeView()));}
-        }),        ],
+      body: SingleChildScrollView(
+        child: Column(children: [ContainerClass(),
+          Image.asset('assets/1st.png',height: 254,width: 354,),
+          SizedBox(height: 30,),
+          BlackTextHeading(text: 'Get Things Done With Todo App'),
+          SizedBox(height: 15,),
+          NormalTextWidget(text: "Welcome to Todo App! Organize tasks, \n"
+              "set priorities,and stay on track effortlessly.\n "
+              "Let’s get started!",
+            textColor: appColors.primaryColor,),
+          SizedBox(height: 20,),
+          AppLoader(),
+          SizedBox(height: 10,),
+          ButtonWidget(text: 'Get Started', ontap: () async {
+            User? check= await FirebaseAuth.instance.currentUser;
+          if(check==null){Navigator.push(context,
+              MaterialPageRoute(builder: (context)=>SignupView()));
+          }
+          else{
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context)=>HomeView()));}
+          }),        ],
+        ),
       ),
     );
   }
